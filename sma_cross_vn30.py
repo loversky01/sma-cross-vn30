@@ -16,9 +16,9 @@ from vnstock import stock_historical_data
 
 # ───────────────────────────────────────────────────────
 VN30 = [
-    "VCB", "VHM", "VNM", "VIC", "CTG", "BID", "TCB", "VPB", "FPT", "GAS",
-    "MWG", "HPG", "SAB", "MSN", "VRE", "PLX", "MBB", "TPB", "STB", "POW",
-    "SSI", "SHB", "HDB", "VIB", "PNJ", "BVH", "GVR", "KDH", "SSB", "PDR"
+    "ACB", "BCM", "BID", "CTG", "DGC", "FPT", "GAS", "GVR", "HDB", "HPG",
+    "LPB", "MBB", "MSN", "MWG", "PLX", "SAB", "SHB", "SSB", "SSI", "STB",
+    "TCB", "TPB", "VCB", "VHM", "VIB", "VIC", "VJC", "VNM", "VPB", "VRE"
 ]
 
 START_DATE = "2020-01-01"
