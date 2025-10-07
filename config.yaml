@@ -1,0 +1,187 @@
+# ═══════════════════════════════════════════════════════════
+# SMA CROSS VN30 - CONFIGURATION FILE
+# ═══════════════════════════════════════════════════════════
+
+# ───────────────────────────────────────────────────────────
+# DATA SETTINGS
+# ───────────────────────────────────────────────────────────
+data:
+  start_date: "2020-01-01"
+  end_date: "2025-06-16"
+  price_dir: "data/price"
+  signal_dir: "data/signals"
+  vn30_symbols:
+    - ACB
+    - BCM
+    - BID
+    - BVH
+    - CTG
+    - DGC
+    - FPT
+    - GAS
+    - GVR
+    - HDB
+    - HPG
+    - KDH
+    - LPB
+    - MBB
+    - MSN
+    - MWG
+    - PDR
+    - PLX
+    - PNJ
+    - POW
+    - SAB
+    - SHB
+    - SSB
+    - SSI
+    - STB
+    - TCB
+    - TPB
+    - VCB
+    - VHM
+    - VIB
+    - VIC
+    - VJC
+    - VNM
+    - VPB
+    - VRE
+
+# ───────────────────────────────────────────────────────────
+# STRATEGY PARAMETERS
+# ───────────────────────────────────────────────────────────
+strategy:
+  # SMA Parameters
+  sma_short: 10       # Short SMA window (days)
+  sma_long: 50        # Long SMA window (days)
+  
+  # Signal Filter (optional)
+  use_volume_filter: false
+  volume_threshold: 1.0    # Volume must be > X times average
+  min_price_gap: 0.0       # Minimum gap between price and SMA50 (%)
+  
+  # Additional Indicators
+  use_rsi: false
+  rsi_period: 14
+  rsi_oversold: 30
+  rsi_overbought: 70
+  
+  use_macd: false
+  macd_fast: 12
+  macd_slow: 26
+  macd_signal: 9
+
+# ───────────────────────────────────────────────────────────
+# RISK MANAGEMENT
+# ───────────────────────────────────────────────────────────
+risk_management:
+  # Stop Loss & Take Profit
+  use_stop_loss: true
+  stop_loss_pct: 5.0        # Stop loss at -5%
+  
+  use_take_profit: true
+  take_profit_pct: 15.0     # Take profit at +15%
+  
+  use_trailing_stop: false
+  trailing_stop_pct: 3.0    # Trailing stop at -3% from peak
+  
+  # Position Sizing
+  position_size_pct: 100.0  # % of capital per trade (100 = all-in)
+  max_positions: 1          # Max concurrent positions (for portfolio)
+  
+  # Portfolio Risk
+  max_sector_exposure: 100.0   # Max % per sector
+  max_correlation: 1.0         # Max correlation between holdings
+
+# ───────────────────────────────────────────────────────────
+# BACKTEST SETTINGS
+# ───────────────────────────────────────────────────────────
+backtest:
+  initial_capital: 100000000    # 100 million VND
+  
+  # Transaction Costs
+  commission_pct: 0.15          # Brokerage commission (0.15%)
+  tax_pct: 0.10                 # Tax on sell (0.10%)
+  slippage_pct: 0.05            # Price slippage (0.05%)
+  
+  # Walk-Forward Settings
+  use_walk_forward: false
+  training_pct: 70.0            # 70% for training
+  testing_pct: 30.0             # 30% for testing
+  
+  # Monte Carlo Settings
+  monte_carlo_runs: 1000
+  confidence_level: 95.0
+
+# ───────────────────────────────────────────────────────────
+# OPTIMIZATION SETTINGS
+# ───────────────────────────────────────────────────────────
+optimization:
+  enabled: false
+  method: "grid_search"    # grid_search or genetic_algorithm
+  
+  # Parameter Ranges
+  sma_short_range: [5, 10, 15, 20]
+  sma_long_range: [30, 50, 100, 200]
+  
+  # Optimization Metric
+  optimize_for: "sharpe_ratio"  # sharpe_ratio, total_return, win_rate
+
+# ───────────────────────────────────────────────────────────
+# DASHBOARD SETTINGS
+# ───────────────────────────────────────────────────────────
+dashboard:
+  title: "SMA Cross VN30 Dashboard"
+  port: 8501
+  theme: "light"    # light or dark
+  
+  # Charts
+  show_equity_curve: true
+  show_drawdown: true
+  show_distribution: true
+  show_monthly_returns: true
+
+# ───────────────────────────────────────────────────────────
+# ALERTS & NOTIFICATIONS
+# ───────────────────────────────────────────────────────────
+alerts:
+  enabled: false
+  telegram_bot_token: ""
+  telegram_chat_id: ""
+  email_enabled: false
+  email_address: ""
+
+# ───────────────────────────────────────────────────────────
+# DATABASE SETTINGS
+# ───────────────────────────────────────────────────────────
+database:
+  use_database: false
+  db_type: "sqlite"        # sqlite or postgresql
+  db_path: "data/sma_cross.db"
+  
+  # PostgreSQL (if used)
+  pg_host: "localhost"
+  pg_port: 5432
+  pg_user: "postgres"
+  pg_password: ""
+  pg_database: "sma_cross"
+
+# ───────────────────────────────────────────────────────────
+# LOGGING SETTINGS
+# ───────────────────────────────────────────────────────────
+logging:
+  level: "INFO"    # DEBUG, INFO, WARNING, ERROR, CRITICAL
+  log_file: "logs/sma_cross.log"
+  log_format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+  log_to_console: true
+  log_to_file: true
+
+# ───────────────────────────────────────────────────────────
+# PERFORMANCE SETTINGS
+# ───────────────────────────────────────────────────────────
+performance:
+  use_multiprocessing: true
+  num_workers: 4           # Number of parallel workers
+  cache_enabled: true
+  cache_dir: "cache"
+

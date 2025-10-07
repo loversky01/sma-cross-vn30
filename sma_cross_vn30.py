@@ -22,7 +22,7 @@ VN30 = [
 ]
 
 START_DATE = "2020-01-01"
-END_DATE   = "2025-06-16"
+END_DATE   = "2025-10-08"
 SHORT_WIN  = 10      # SMA ngắn
 LONG_WIN   = 50      # SMA dài
 
